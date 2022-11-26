@@ -31,8 +31,10 @@ def main():
 
     podcast_shows_apple_id_final = list(set(list(flatten(podcast_shows_apple_id))))
     df = pd.DataFrame({'podcast_id': podcast_shows_apple_id_final})
-    df.to_csv(os.path.join('..','data','podcast_id.csv'),index=False)
+    df.to_csv(os.path.join('..','data','podcast_id_full.csv'),index=False)
     
+    print("Got the podcast ID's")
+
     podcast_id_df = pd.read_csv(os.path.join('..','data','podcast_id_full.csv'))
     
     def get_podcast_json_data(podcast_id):
@@ -48,18 +50,19 @@ def main():
 
         for pod_id in df.podcast_id.to_list():
             try:
-                itunes_api = f"https://itunes.apple.com/lookup?id={str(pod_id)}&media=podcast"
-                itunes_podcast_json = r.get(itunes_api).json()
-                list_of_podcast_data.append(itunes_podcast_json['results'][0])
+                itunes_podcast_json = get_podcast_json_data(pod_id)
+                list_of_podcast_data.append(itunes_podcast_json)
             except:
                 list_of_podcasts_extra.append([i, pod_id])
                 pass
 
         df_1 = pd.DataFrame(list_of_podcast_data)
         return df_1
-    
+    podcast_show_df = get_podcast_data(podcast_id_df)
     podcast_show_df.to_parquet(os.path.join('..','data','podcast_show_data_full.parquet'), index=False)
     
+    print("Got the podcast show data")
+
     feed_url_list = podcast_show_df.dropna(subset=['feedUrl'])['feedUrl'].to_list()
     
     
@@ -89,7 +92,8 @@ def main():
     podcast_episode_df.to_parquet(os.path.join('..','data','podcast_episode_data_full.parquet'), index=False)
     
 
-podcast_show_df = get_podcast_data(podcast_id_df)
+    print("Got the podcast episode data")
+
 
 if __name__ == '__main__':
     main()
