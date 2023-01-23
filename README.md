@@ -15,7 +15,7 @@ The project makes use of the following technologies:
 * Apache Kafka: A distributed streaming platform that is used to handle the streaming of the podcast episodes.
 * Pandas: A library for working with various data.
 * Parquet: columnar storage format of Hadoop ecosystem, which provides efficient storage and encoding of data.
-Docker Compose: A tool for defining and running multi-container Docker applications.
+* Docker Compose: A tool for defining and running multi-container Docker applications.
 
 Getting started:
 1. Clone the repository to your local machine.
