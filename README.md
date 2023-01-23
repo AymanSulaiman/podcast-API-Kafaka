@@ -1,5 +1,3 @@
-# podcast-API-Kafaka
-
 # Project Title: Podcast Episode Kafka Delivery System 
 
 
