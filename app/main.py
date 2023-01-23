@@ -29,7 +29,7 @@ def get_podcast_ep_data_id(_id):
 
 def find_podcast_ep(title):
     # return df_ep[df_ep.title.str.find(str(title))].to_dict(orient='records')
-    return df_ep.query(f"title.str.contains(\"{title}\")", engine='python').to_dict(orient='records')
+    return df_ep.query(f"title.str.contains(\"{title}\".strip(), case=False)", engine='python').to_dict(orient='records')
 
 
 def get_podcast_show_data_id(_id):
@@ -37,7 +37,7 @@ def get_podcast_show_data_id(_id):
 
 def find_podcast_show(title):
     # return df_ep[df_ep.title.str.find(str(title))].to_dict(orient='records')
-    return df_show.query(f"title.str.contains(\"{title}\")", engine='python').to_dict(orient='records')
+    return df_show.query(f"title.str.contains(\"{title}\".strip(), case=False)", engine='python').to_dict(orient='records')
 
 
 @app.get("/")
