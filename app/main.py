@@ -4,7 +4,19 @@ from typing import Union
 import asyncio
 from fastapi import FastAPI
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
-from config import loop, KAFKA_BOOTSTRAP_SERVERS, KAFKA_CONSUMER_GROUP, KAFKA_TOPIC
+# from config import loop, KAFKA_BOOTSTRAP_SERVERS, KAFKA_CONSUMER_GROUP, KAFKA_TOPIC
+
+
+
+import asyncio
+
+# env Variable
+KAFKA_BOOTSTRAP_SERVERS= "localhost:9093"
+KAFKA_TOPIC="kafka"
+KAFKA_CONSUMER_GROUP="group-id"
+loop = asyncio.get_event_loop()
+
+
 
 app = FastAPI()
 
