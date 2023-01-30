@@ -1,4 +1,4 @@
-# Project Title: Podcast Episode Kafka Delivery System 
+# Podcast Episode Kafka Delivery System 
 
 
 ### Description:
